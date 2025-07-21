@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPS</title>
+  </head>
+  <body></body>
+  <script>
+    let compScore = 0;
+    let humanScore = 0;
+
+    function getComputerChoice() {
+      let rand = Math.floor(Math.random() * 3 + 1);
+      switch (rand) {
+        case 1:
+          return "rock";
+          break;
+        case 2:
+          return "paper";
+          break;
+        case 3:
+          return "scissor";
+          break;
+      }
+    }
+
+    function getHumanChoice() {
+      let choice = prompt("Enter rock paper or scissor");
+      return choice;
+    }
+
+    function declareWinner(humanScore, compScore) {
+      if (humanScore > compScore) {
+        console.log("Human wins!");
+      } else if (humanScore < compScore) {
+        console.log("Computer wins!");
+      } else {
+        console.log("Neither wins!");
+      }
+    }
+
+    function playGame() {
+      let msg = "";
+
+      function playRound() {
+        let compChoice = getComputerChoice();
+        let humanChoice = getHumanChoice().toLowerCase();
+
+        if (humanChoice === "rock" && compChoice === "paper") {
+          msg = "You lose! Paper beats rock!";
+          compScore++;
+        } else if (humanChoice === "paper" && compChoice === "scissor") {
+          msg = "You lose! Scissor beats paper!";
+          compScore++;
+        } else if (humanChoice === "scissor" && compChoice === "rock") {
+          msg = "You lose!  Rock beats scissor!";
+          compScore++;
+        } else if (humanChoice === compChoice) {
+          msg = "It's a tie!";
+        } else {
+          msg = "You win! " + humanChoice + " " + "beats " + compChoice + "!";
+          humanScore++;
+        }
+
+        console.log(msg);
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        playRound();
+      }
+    }
+
+    playGame();
+
+    console.log("Comp Score: " + compScore);
+    console.log("Human Score: " + humanScore);
+
+    declareWinner(humanScore, compScore);
+  </script>
+</html>
