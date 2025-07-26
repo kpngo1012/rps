@@ -7,6 +7,45 @@
   </head>
   <body></body>
   <script>
+    //UI
+    const body = document.querySelector("body");
+    const container = document.createElement("div");
+
+    body.appendChild(container);
+
+    const selections = document.createElement("ul");
+    const rock = document.createElement("button");
+    rock.setAttribute("id", "rock");
+    rock.textContent = "rock";
+    const paper = document.createElement("button");
+    paper.setAttribute("id", "paper");
+    paper.textContent = "paper";
+    const scissor = document.createElement("button");
+    scissor.setAttribute("id", "scissor");
+
+    scissor.textContent = "scissor";
+
+    selections.appendChild(rock);
+    selections.appendChild(paper);
+    selections.appendChild(scissor);
+    container.appendChild(selections);
+
+    selections.addEventListener("click", (e) => {
+      let target = event.target;
+
+      switch (target.id) {
+        case "rock":
+          console.log("Rock");
+          break;
+        case "paper":
+          console.log("Paper");
+          break;
+        case "scissor":
+          console.log("Scissor");
+          break;
+      }
+    });
+
     let compScore = 0;
     let humanScore = 0;
 
@@ -64,10 +103,6 @@
         }
 
         console.log(msg);
-      }
-
-      for (let i = 1; i <= 5; i++) {
-        playRound();
       }
     }
 
